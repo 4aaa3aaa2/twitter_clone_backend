@@ -1,0 +1,10 @@
+Flask>=3.1.0                      # Web framework (alternative to spring-boot-starter-web)
+Flask-SQLAlchemy>=3.1.1           # ORM support (alternative to spring-boot-starter-data-jpa)
+Flask-JWT-Extended>=4.4.0         # JWT handling (alternative to jjwt)
+PyJWT>=2.6.0                      # Another JWT library option
+google-cloud-storage>=2.53.1      # Google Cloud Storage client
+mysql-connector-python>=8.0.33    # MySQL connector
+pytest>=7.0.0                    # Testing framework (alternative to junit + spring-boot-starter-test)
+pytest-mock>=3.7.0                # Mocking support for tests
+SQLAlchemy>=2.0.40                 # If you want plain SQLAlchemy without Flask integration
+requests>=2.26.0                 # For HTTP requests if needed

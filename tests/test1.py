@@ -1,0 +1,3 @@
+import os
+print("GOOGLE_APPLICATION_CREDENTIALS:", os.getenv("GOOGLE_APPLICATION_CREDENTIALS"))
+print("GCS_BUCKET:", os.getenv("GCS_BUCKET"))
