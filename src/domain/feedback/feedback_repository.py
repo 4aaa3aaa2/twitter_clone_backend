@@ -1,4 +1,4 @@
-from src.twitter_clone_app import db
+from src.extensions import db
 from .feedback import Feedback
 
 class FeedbackRepository:

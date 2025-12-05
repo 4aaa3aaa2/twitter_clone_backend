@@ -1,4 +1,4 @@
-from src.twitter_clone_app import db
+from src.extensions import db
 from typing import List
 from .post_media import PostMedia
 

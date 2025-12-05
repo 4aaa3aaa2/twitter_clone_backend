@@ -30,8 +30,8 @@ notification_repository = NotificationRepository()
 class FeedService:
 
     @staticmethod
-    def get_paginated_post_ids(cursor: int, limit: int, user_id: int, type: str)-> dict[str:str]:
-        ids: List = FeedService.get_paginated_feed(type, user_id, cursor, limit)
+    def get_paginated_post_ids(cursor: int, limit: int, user_id: int, feed_type: str)-> dict[str:str]:
+        ids: List = FeedService.get_paginated_feed(feed_type, user_id, cursor, limit=10)
         print(f"Got paginated post ids: {ids} size: {len(ids)} cursor: {cursor} limit: {limit} user: {user_id} type: {type}")
 
         last_post_id: Optional[int] = None
@@ -65,12 +65,11 @@ class FeedService:
             "posts": ids,
             "nextCursor": last_post_id,
         }
-        print(f"Returned: {ids} cursor: {last_post_id} limit: {limit} user: {user_id} type: {type}")
+        print(f"Returned: {ids} cursor: {last_post_id} limit: {limit} user: {user_id} type: {feed_type}")
         return response
     
     @staticmethod
     def get_paginated_feed(
-        self,
         feed_type: str,
         user_id: Optional[int],
         cursor: int,
@@ -125,15 +124,15 @@ class FeedService:
             print(f"Creating NEW feed for user: {user_id}")
             post_ranks: List[PostRank] = edge_rank.build_and_get_new_feed(user_id)
             edge_rank.save_feed(user_id, post_ranks)
-            ids = feed_entry_repository.get_feed_post_ids_custom(user_id, cursor, limit)
+            ids = feed_entry_repository.get_feed_post_ids_custom(user_id, cursor)
             print(f"New Feed Generated: {ids}")
         else:
-            ids = feed_entry_repository.get_feed_post_ids_custom(user_id, cursor, limit)
+            ids = feed_entry_repository.get_feed_post_ids_custom(user_id, cursor)
             print(f"Old ids is: {ids}")
             if not ids:
                 post_ranks = edge_rank.build_and_get_new_feed(user_id)
                 edge_rank.save_feed(user_id, post_ranks)
-                ids = feed_entry_repository.get_feed_post_ids_custom(user_id, cursor, limit)
+                ids = feed_entry_repository.get_feed_post_ids_custom(user_id, cursor)
         return ids
       
     @staticmethod

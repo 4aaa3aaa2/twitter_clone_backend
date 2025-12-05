@@ -3,7 +3,7 @@ from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
 
-from src.twitter_clone_app import db
+from src.extensions import db
 
 class User(db.Model):
     __tablename__ = "users"

@@ -1,5 +1,5 @@
 from datetime import datetime
-from src.twitter_clone_app import db
+from src.extensions import db
 
 class FeedEntry(db.Model):
     __tablename__ = "feed_entry"

@@ -1,5 +1,5 @@
 from sqlalchemy import func, text
-from src.twitter_clone_app import db
+from src.extensions import db
 from .user import User
 import datetime
 
@@ -40,14 +40,14 @@ class UserRepository:
         sql = text("""
             SELECT u.id
             FROM users u
-            LEFT JOIN follows f ON f.followed_id = u.id
+            LEFT JOIN follow f ON f.followed_id = u.id
             GROUP BY u.id
             HAVING COUNT(f.follower_id) <= :cursor
             ORDER BY COUNT(f.follower_id) DESC
             LIMIT :limit
         """)
         result = db.session.execute(sql, {'cursor': cursor, 'limit': limit})
-        return [row[0] for row in result.fetchall()].scalars().all()
+        return [row[0] for row in result.fetchall()]
 
     @staticmethod
     def find_user_ids_by_created_at_custom(cursor: datetime, limit: int, offset: int = 0):

@@ -1,5 +1,5 @@
 from sqlalchemy import and_, text
-from src.twitter_clone_app import db
+from src.extensions import db
 from .notification import Notification
 import datetime
 from typing import List

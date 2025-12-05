@@ -25,7 +25,8 @@ poll_service = PollService()
 class PostController:
     
     @post_bp.route("/get-posts", methods=["POST"])
-    def get_post(self):
+    @staticmethod
+    def get_post():
         ids = request.get_json()
         print("received request to retrieve posts")
 
@@ -33,12 +34,14 @@ class PostController:
         return jsonify(result)
     
     @post_bp.route("/get-post/<int:post_id>",methods=["GET"])
+    @staticmethod
     def get_single_post(post_id):
         result = post_service.find_post_dto_by_id(post_id)
         return jsonify(result)
     
     @post_bp.route("/delete", methods=["POST"])
-    def delete_post(self):
+    @staticmethod
+    def delete_post():
         post_id = request.get_json()
         auth_user_id = GetAuthUserId.get_auth_user_id()
         print("reveived request to delete post")
@@ -48,7 +51,8 @@ class PostController:
     
 
     @post_bp.route("/pin",methods=["POST"])
-    def pin_post(self):
+    @staticmethod
+    def pin_post():
         post_id = request.args.get("post_id", type = int)
         auth_user_id = GetAuthUserId.get_auth_user_id()
         print(f"jwt user id {auth_user_id}")
@@ -58,7 +62,8 @@ class PostController:
         return jsonify(user_to_return)
     
     @post_bp.route("/unpin", methods=["POST"])
-    def unpin_post(self):
+    @staticmethod
+    def unpin_post():
         post_id = request.args.get("post_id", type = int)
         auth_user_id = GetAuthUserId.get_auth_user_id()
         print(f"jwt user id {auth_user_id}")
@@ -69,12 +74,13 @@ class PostController:
         return jsonify(user_to_return)
     
     @post_bp.route("/create", methods=["POST"])
-    def create_post(self):
-        text = request.args.get("text", type = str)
-        parent_id = request.args.get("parent_id", type = int)
-        images = request.args.get("images", type = list)
-        poll_choices = request.args.get("poll_choices",type = int)
-        poll_expiry = request.args.get("poll_expiry", type = int)
+    @staticmethod
+    def create_post():
+        text = request.form.get("text", type = str)
+        parent_id = request.form.get("parent_id", type = int)
+        images = request.files.get("images", type = list)
+        poll_choices = request.form.get("poll_choices",type = int)
+        poll_expiry = request.form.get("poll_expiry", type = int)
         auth_user_id = GetAuthUserId.get_auth_user_id()
     
         post: Post = post_service.create_post_entity(auth_user_id, text, parent_id)

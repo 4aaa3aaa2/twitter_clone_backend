@@ -2,7 +2,7 @@ from .trend_entity import TrendEntity
 from .trend_repository import TrendRepository
 import os
 import requests
-from src.twitter_clone_app import db
+from src.extensions import db
 
 trend_repository = TrendRepository()
 bearer_token = os.getenv("X_BEARER_TOKEN")

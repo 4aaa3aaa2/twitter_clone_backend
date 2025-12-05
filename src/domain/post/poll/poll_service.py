@@ -1,4 +1,4 @@
-from src.twitter_clone_app import db
+from src.extensions import db
 from src.util.poll_utils import POllUtils
 from .poll import Poll
 from .poll_vote_repository import PollVotesRepository

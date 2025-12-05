@@ -1,4 +1,4 @@
-from src.twitter_clone_app import db
+from src.extensions import db
 from .trend_entity import TrendEntity
 from sqlalchemy import text
 from typing import List

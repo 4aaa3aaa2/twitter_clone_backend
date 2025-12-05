@@ -17,7 +17,7 @@ like_service = LikeService()
 class LikeController:
 
     @like_bp.route("/create",methods=["POST"])
-    def create_like(self):
+    def create_like():
         new_like = request.get_json()
         auth_user_id: int = GetAuthUserId.get_auth_user_id()
         liked_post_id: int = new_like.get("liked_post_id")
@@ -29,7 +29,7 @@ class LikeController:
             return jsonify(str(e))
 
     @like_bp.route("/delete", methods=["POST"])
-    def remove_like(self):
+    def remove_like():
         new_like = request.get_json()
         auth_user_id: int = GetAuthUserId.get_auth_user_id()
         liked_post_id: int = new_like.get("liked_post_id")

@@ -1,5 +1,5 @@
 from sqlalchemy import and_, text
-from src.twitter_clone_app import db
+from src.extensions import db
 from .post import Post
 import datetime
 from typing import List, Optional
@@ -141,7 +141,7 @@ class PostRepository:
         return result
     
     @staticmethod
-    def find_all_top_level_posts(self):
+    def find_all_top_level_posts():
         sql = text("SELECT * FROM posts WHERE parent_id IS NULL")
         result = db.session.execute(sql).mappings().all()
         return result

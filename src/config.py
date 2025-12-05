@@ -18,7 +18,7 @@ class Config:
     GCS_BUCKET = "twitter_clone_media"
 
     # JWT secrets from environment variables (recommended to keep secrets out of code)
-    JWT_SECRET = os.getenv('JWT_SECRET', 'your-default-jwt-secret')
+    JWT_SECRET = os.getenv('JWT_SECRET', "your-default-jwt-secret")
     X_BEARER_TOKEN = os.getenv('X_BEARER_TOKEN', '')
 
     # Logging levels can be set up in your app's logging config (see below)

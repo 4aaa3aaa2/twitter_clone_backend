@@ -4,7 +4,7 @@ from typing import List
 from .user_service import UserService
 from .user_repository import UserRepository
 
-user_bp = Blueprint("user_bp",__name__, url_prefix="/api/user")
+user_bp = Blueprint("user_bp",__name__, url_prefix="/api/users")
 #initialize the imported models
 
 user_service = UserService()
@@ -18,7 +18,7 @@ class UserController:
         #return jsonify(f"id got {user_id}")
         if user_id is None:
             return jsonify({"error": "Missing id parameter"}), 400
-        result = UserService.generate_user_dto_by_user_id(id=user_id)
+        result  = UserService.generate_user_dto_by_user_id(id=user_id)
         if result == None:
             return jsonify({"message":f"user with id {user_id} not exist"})
         return jsonify(result)

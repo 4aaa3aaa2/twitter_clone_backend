@@ -1,4 +1,4 @@
-from src.twitter_clone_app import db
+from src.extensions import db
 from src.domain.user.user_dto import UserDTO
 from src.domain.user.user_service import UserService
 from src.domain.notification.notification_service import NotificationService

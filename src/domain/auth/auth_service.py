@@ -1,4 +1,4 @@
-from src.twitter_clone_app import db
+from src.extensions import db
 from src.domain.feed.edge_rank import EdgeRank
 from src.domain.user.user import User
 from src.domain.user.user_repository import UserRepository
@@ -10,7 +10,7 @@ from typing import Optional, List
 
 user_repository = UserRepository()
 edge_rank = EdgeRank()
-
+user_identity_utils = UserIdentityUtils()
 
 class AuthService:
 
@@ -29,15 +29,13 @@ class AuthService:
         new_user.email = f"{use_name}@gmail.com"
         new_user.created_at = datetime.now()
         new_user.profile_picture_url = defalut_pfp
-        #TODO
-        new_user.banner_image_url = " NOT SET YET !!!"
-        #TODO
+        new_user.banner_image_url = "https://storage.googleapis.com/twitter_clone_4aaa3aaa2/Screenshot_20251128_101458_Maps.jpg"
         new_user.verified = False
         return new_user
     
     @staticmethod
     def authenicate_google_user(access_token: str)-> User:
-        user_info: dict = UserIdentityUtils.parse_google_user_info(access_token)
+        user_info: dict = user_identity_utils.parse_google_user_info(access_token)
         if user_info == None or "sub" not in user_info:
             raise ValueError("could not find user")
         
@@ -62,13 +60,13 @@ class AuthService:
 
         suffix: int = random.randint(10000,99999)
 
-        new_user.username = UserIdentityUtils.parse_google_user_name(first_name, last_name, suffix)
-        new_user.display_name = UserIdentityUtils.parse_google_display_name(first_name,last_name, suffix)
+        new_user.username = user_identity_utils.parse_google_user_name(first_name, last_name, suffix)
+        new_user.display_name = user_identity_utils.parse_google_display_name(first_name,last_name, suffix)
         new_user.verified = False
         new_user.email = email
         new_user.created_at = datetime.now()
         new_user.profile_picture_url = picture_url
-        new_user.banner_image_url = " NOT SET YET!!!  "
+        new_user.banner_image_url = "https://storage.googleapis.com/twitter_clone_4aaa3aaa2/Screenshot_20251128_101458_Maps.jpg"
 
         db.session.add(new_user)
         db.session.commit()

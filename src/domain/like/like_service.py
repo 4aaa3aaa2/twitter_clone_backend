@@ -6,7 +6,7 @@ from src.domain.post.post import Post
 from src.domain.post.post_dto import PostDTO
 from src.domain.post.post_service import PostService
 from typing import Optional, List
-from src.twitter_clone_app import db
+from src.extensions import db
 
 
 like_repository = LikeRepository()

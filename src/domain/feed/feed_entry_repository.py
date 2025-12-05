@@ -1,5 +1,5 @@
 from sqlalchemy import and_, text
-from src.twitter_clone_app import db
+from src.extensions import db
 from .feed_entry import FeedEntry
 import datetime
 from typing import List
@@ -14,9 +14,9 @@ class FeedEntryRepository:
     @staticmethod
     def get_feed_post_ids_custom(user_id: int, cursor: int)->List[int]:
         sql = text("""
-            SELECT f.postId
-            FROM FeedEntry f
-            WHERE f.userId = :userId AND f.position >= :cursor
+            SELECT f.post_id
+            FROM feed_entry f
+            WHERE f.user_id = :user_id AND f.position >= :cursor
             ORDER BY f.position ASC
             """)
         result = db.session.execute(sql,{"user_id": user_id, "cursor":cursor})

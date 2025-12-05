@@ -1,4 +1,4 @@
-from src.twitter_clone_app import db
+from src.extensions import db
 
 class PollChoice(db.Model):
     __tablename__ = "poll_choices"

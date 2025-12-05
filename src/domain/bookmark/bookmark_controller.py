@@ -18,14 +18,14 @@ jwt_service = JwtService()
 class BookmarkController:
 
     @bookmark_bp.route("/create", methods=["POST"])
-    def create_bookmark(self):
+    def create_bookmark():
         body: dict[str:str] = request.get_json()
         new_bookmark_post: int = body.get("bookmarked_post")
 
         auth_user_id = GetAuthUserId.get_auth_user_id()
 
         try:
-            bookmark_to_return: PostDTO = self.bookmark_service.add_new_bookmark(auth_user_id,new_bookmark_post)
+            bookmark_to_return: PostDTO = bookmark_service.add_new_bookmark(auth_user_id,new_bookmark_post)
             return jsonify(bookmark_to_return)
         
         except ValueError as e:
@@ -33,12 +33,12 @@ class BookmarkController:
     
 
     @bookmark_bp.route("/delete", methods=["POST"])
-    def delete_bookmark(self):
+    def delete_bookmark():
         body: dict[str:str] = request.get_json()
         new_bookmark_post: int = body.get("bookmarked_post")
 
         auth_user_id: int = GetAuthUserId.get_auth_user_id()
-        result: PostDTO = self.bookmark_service.delete_bookmark(auth_user_id, new_bookmark_post)
+        result: PostDTO = bookmark_service.delete_bookmark(auth_user_id, new_bookmark_post)
         return jsonify(result)
 
 

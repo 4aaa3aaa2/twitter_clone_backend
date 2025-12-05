@@ -1,4 +1,4 @@
-from src.twitter_clone_app import db
+from src.extensions import db
 
 from src.domain.post.post import Post
 from src.domain.post.post_repository import PostRepository

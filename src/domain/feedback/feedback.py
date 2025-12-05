@@ -1,4 +1,4 @@
-from src.twitter_clone_app import db
+from src.extensions import db
 
 class Feedback(db.Model):
     __tablename__ = "feedback"

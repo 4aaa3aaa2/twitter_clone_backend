@@ -1,4 +1,4 @@
-from src.twitter_clone_app import db
+from src.extensions import db
 from src.domain.bookmark.bookmark import Bookmark
 from src.domain.bookmark.bookmark_repository import BookmarkRepository
 #from src.domain.feed.edge_rank import EdgeRank
