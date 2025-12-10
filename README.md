@@ -3,7 +3,7 @@
  This is a project cloing twitter functions.  
 
 
-## Major requirements:  
+## Major requirements & tech stack:  
 | name | version | usage |
 |------|------|------|
 | Flask | 3.1.0 | Web framework (alternative to spring-boot-starter-web) |
@@ -34,7 +34,25 @@ their URLs in `src/constants/default_name_contents.py` with yours
 6. Now you can run with the command `py -m src.twitter_clone_app` in terminal.  
 
 ## Project structure
-*_controller.py: Define the APIs for interaction
-*_service.py: The real logic of controllers
-*_repository.py: Connection to database, the operation of data
-MODELNAME.py: The model itself
+*_controller.py: Define the APIs for interaction  
+*_service.py: The real logic of controllers  
+*_repository.py: Connection to database, the operation of data  
+MODELNAME.py: The model itself  
+
+### modules
+
+|module name|playrole|
+|---|---|
+auth|user login, template signup, update profile and get the current authenicated user info|
+bookmark|mark a post and delete a mark
+feed|show paginated feed
+feedback|submit user feedback
+follow|follow and unfollow a user
+like|like and unlike a post
+notification|get unseen notifications and see notification details, and mark them if seen
+post|get posts or one post, create or delete a post, pin or unpin a post, save post images to DB if there are images
+retweet|retweet a post or unretweet
+user|get users or a user or ranked users, serach for users or discover users
+security|middleware of authorization, verify login jwt tokens
+storage| store media files into database
+
