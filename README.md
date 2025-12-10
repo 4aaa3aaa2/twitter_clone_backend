@@ -1,5 +1,5 @@
 # **TWITTER CLONE PROJECT**  
-![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)
+![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)
  This is a project cloing twitter functions.  
 
 
